@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1381A31E16DF57DA001AE2D3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1381A31D16DF57DA001AE2D3 /* Default-568h@2x.png */; };
 		E7252B1415094C9300B0FC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7252B1315094C9300B0FC9D /* UIKit.framework */; };
 		E7252B1615094C9300B0FC9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7252B1515094C9300B0FC9D /* Foundation.framework */; };
 		E7252B1815094C9300B0FC9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7252B1715094C9300B0FC9D /* CoreGraphics.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1381A31D16DF57DA001AE2D3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E7252B0F15094C9300B0FC9D /* Scrolling Tab Bar Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scrolling Tab Bar Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7252B1315094C9300B0FC9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E7252B1515094C9300B0FC9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,6 +82,7 @@
 		E7252B0415094C9300B0FC9D = {
 			isa = PBXGroup;
 			children = (
+				1381A31D16DF57DA001AE2D3 /* Default-568h@2x.png */,
 				E770CA5A16C8FCCD00A69978 /* LICENSE */,
 				E770CA5816C89B9E00A69978 /* CCFScrollingTabBar.podspec */,
 				E770CA4216C899F500A69978 /* example */,
@@ -205,6 +208,7 @@
 				E770CA5616C899F500A69978 /* InfoPlist.strings in Resources */,
 				E770CA5916C89B9E00A69978 /* CCFScrollingTabBar.podspec in Resources */,
 				E770CA5B16C8FCCD00A69978 /* LICENSE in Resources */,
+				1381A31E16DF57DA001AE2D3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

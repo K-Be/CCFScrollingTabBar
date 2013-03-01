@@ -35,6 +35,7 @@ static CCFScrollableTabView *commonInit(CCFScrollableTabView *self) {
 - (void)_addRightStop;
 - (void)_addScrollView;
 - (NSDictionary *)_colorInfo;
+- (void)_updateForNewOffset;
 @end
 
 @implementation CCFScrollableTabView
@@ -82,24 +83,7 @@ static CCFScrollableTabView *commonInit(CCFScrollableTabView *self) {
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if( [keyPath isEqualToString:@"dataSource"] )
     {
-        if( _scrollView )
-            [_scrollView removeFromSuperview];
-        [self _addScrollView];
-        if( _leftStop )
-            [_leftStop removeFromSuperview];
-        [self _addLeftStop];
-        if( _rightStop )
-            [_rightStop removeFromSuperview];
-        [self _addRightStop];
-        
-        CAGradientLayer *layer = (CAGradientLayer *)self.layer;
-        NSDictionary *colorInfo = [self _colorInfo];
-        UIColor *darkColor = [colorInfo objectForKey:kCCFScrollableTabDarkColor];
-        UIColor *lightColor = [colorInfo objectForKey:kCCFScrollableTabLightColor];
-        NSMutableArray *mutableColors = [NSMutableArray arrayWithCapacity:2];
-        [mutableColors addObject:(id)lightColor.CGColor];
-        [mutableColors addObject:(id)darkColor.CGColor];
-        layer.colors = mutableColors;
+		 [self reloadData];
     }
 }
 
@@ -133,6 +117,20 @@ static CCFScrollableTabView *commonInit(CCFScrollableTabView *self) {
     return mutableColorInfo;
 }
 
+
+- (void)_updateForNewOffset
+{
+	CGPoint offset = _scrollView.contentOffset;
+	if( offset.x <= 0 )
+		_leftStop.hidden = YES;
+	else
+		_leftStop.hidden = NO;
+	if( offset.x + WindowWidth >= _scrollView.contentSize.width )
+		_rightStop.hidden = YES;
+	else
+		_rightStop.hidden = NO;
+}
+
 #pragma mark - Public
 
 - (void)setSelectedItemIndex:(NSInteger)index {
@@ -140,18 +138,35 @@ static CCFScrollableTabView *commonInit(CCFScrollableTabView *self) {
     [_scrollView setSelectedIndex:index];
 }
 
+
+- (void)reloadData
+{
+	if( _scrollView )
+		[_scrollView removeFromSuperview];
+	[self _addScrollView];
+	if( _leftStop )
+		[_leftStop removeFromSuperview];
+	[self _addLeftStop];
+	if( _rightStop )
+		[_rightStop removeFromSuperview];
+	[self _addRightStop];
+	
+	CAGradientLayer *layer = (CAGradientLayer *)self.layer;
+	NSDictionary *colorInfo = [self _colorInfo];
+	UIColor *darkColor = [colorInfo objectForKey:kCCFScrollableTabDarkColor];
+	UIColor *lightColor = [colorInfo objectForKey:kCCFScrollableTabLightColor];
+	NSMutableArray *mutableColors = [NSMutableArray arrayWithCapacity:2];
+	[mutableColors addObject:(id)lightColor.CGColor];
+	[mutableColors addObject:(id)darkColor.CGColor];
+	layer.colors = mutableColors;
+	
+	[self _updateForNewOffset];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint offset = scrollView.contentOffset;
-    if( offset.x <= 0 )
-        _leftStop.hidden = YES;
-    else
-        _leftStop.hidden = NO;
-    if( offset.x + WindowWidth >= _scrollView.contentSize.width )
-        _rightStop.hidden = YES;
-    else
-        _rightStop.hidden = NO;
+   [self _updateForNewOffset];
 }
 
 #pragma mark - CCFScrollableTabScrollViewDelegate

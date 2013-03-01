@@ -38,4 +38,9 @@
  */
 - (void)setSelectedItemIndex:(NSInteger)index;
 
+/**Reload data
+ Updates information.
+*/
+- (void)reloadData;
+
 @end

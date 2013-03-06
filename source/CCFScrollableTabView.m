@@ -80,6 +80,12 @@ static CCFScrollableTabView *commonInit(CCFScrollableTabView *self) {
     return commonInit(self);
 }
 
+
+- (void)dealloc
+{
+	[self removeObserver:self forKeyPath:@"dataSource"];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if( [keyPath isEqualToString:@"dataSource"] )
     {

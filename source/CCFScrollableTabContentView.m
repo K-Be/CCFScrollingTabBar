@@ -67,6 +67,8 @@
     [_tabs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if( idx != index  )
             [obj setSelected:NO];
+		 else
+			 [obj setSelected:YES];
     }];
     [_delegate scrollableTabContentView:self didSelectItemAtIndex:index];
 }

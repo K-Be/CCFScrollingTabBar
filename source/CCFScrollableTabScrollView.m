@@ -42,7 +42,8 @@
     [[self subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if( [obj isKindOfClass:[CCFScrollableTabContentView class]] ) {
             CCFScrollableTab *tabToSelect = [obj tabAtIndex:index];
-            [tabToSelect setSelected:YES];
+//            [tabToSelect setSelected:YES];
+			  [(CCFScrollableTabContentView*)obj selectItemAtIndex:index];
             CGFloat horizontalOffset = tabToSelect.location - 20.f;
             if( horizontalOffset < 0.0 )
                 horizontalOffset = tabToSelect.location;
